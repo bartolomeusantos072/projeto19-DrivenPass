@@ -1,5 +1,6 @@
 import connection from "../config/database";
-import { CreateUserData } from "../utils/typeUtils";
+import { TCreateUserData } from "../utils/typeUtils";
+
 
 export async function findUserEmail(email: string) {
   return connection.user.findUnique({
@@ -15,7 +16,7 @@ export async function findById(id: number) {
   });
 }
 
-export async function insert(user: CreateUserData) {
+export async function insert(user: TCreateUserData) {
   return connection.user.create({
     data: user,
   });

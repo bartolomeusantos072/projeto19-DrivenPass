@@ -1,7 +1,6 @@
 import joi from "joi";
-import { CreateUserData } from "../utils/typeUtils";
 
-export const userSchema = joi.object<CreateUserData>({
+export const userSchema = joi.object({
     email:joi.string().email().required(),
     password:joi.string().min(10).required()
 });

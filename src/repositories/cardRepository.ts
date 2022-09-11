@@ -4,13 +4,13 @@ import { TCreateCreditCardData } from "../utils/typeUtils";
 
 
 
-export async function purchaseAllCards(userId: number) {
+export async function findAllCards(userId: number) {
   return connection.creditCard.findMany({
     where: { userId }
   })
 }
 
-export async function purchaseCard(userId: number, cardId: number) {
+export async function findCard(userId: number, cardId: number) {
   return connection.creditCard.findFirst({
     where: {
       userId,
@@ -19,7 +19,7 @@ export async function purchaseCard(userId: number, cardId: number) {
   })
 }
 
-export async function purchaseCardByTitle(userId: number, title: string) {
+export async function findCardByTitle(userId: number, title: string) {
   return connection.creditCard.findFirst({
     where: { userId, title }
   })

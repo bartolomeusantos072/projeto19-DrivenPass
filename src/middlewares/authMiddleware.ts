@@ -5,7 +5,7 @@ dotenv.config();
 import { unauthorizedError } from "../utils/errorUtils";
 import { userService } from "../services/userService";
 
-export async function name(req:Request,res:Response,next:NextFunction) {
+export async function authMiddleware(req:Request,res:Response,next:NextFunction) {
 
     const authorization = req.headers["authorization"];
     if(!authorization){

@@ -1,14 +1,15 @@
 import { User } from "@prisma/client";
-import { TCreateCreditCardData } from "../utils/typeUtils.js";
+import * as cardRepository from "../repositories/cardRepository";
 
-import { decrypt, encrypt } from "../utils/criptrUtils.js";
-import { conflictError, notFoundError } from "../utils/errorUtils.js";
-import * as cardRepository from "./../repositories/cardRepository.js";
+import { TCreateCreditCardData } from "../utils/typeUtils";
+import { conflictError, notFoundError } from "../utils/errorUtils";
+import { decrypt, encrypt } from "../utils/criptrUtils";
 
 
 
-async function purchaseAllCards(userId: number) {
-    const cards = await cardRepository.purchaseAllCards(userId);
+
+async function findAllCards(userId: number) {
+    const cards = await cardRepository.findAllCards(userId);
     return cards.map(card => {
         return {
             ...card,
@@ -18,8 +19,8 @@ async function purchaseAllCards(userId: number) {
     })
 }
 
-export async function purchaseCard(userId: number, cardId: number) {
-    const card = await cardRepository.purchaseCard(userId, cardId);
+export async function findCard(userId: number, cardId: number) {
+    const card = await cardRepository.findCard(userId, cardId);
     if (!card) throw notFoundError("Card doesn't exist");
 
     return {
@@ -31,7 +32,7 @@ export async function purchaseCard(userId: number, cardId: number) {
 
 async function insertCard(user: User, card: TCreateCreditCardData) {
 
-    const existingCard = await cardRepository.purchaseCardByTitle(user.id, card.title);
+    const existingCard = await cardRepository.findCardByTitle(user.id, card.title);
     if (existingCard) throw conflictError("Title already exists");
 
     const cardInfos: TCreateCreditCardData = {
@@ -44,13 +45,13 @@ async function insertCard(user: User, card: TCreateCreditCardData) {
 }
 
 async function deleteCard(user: User, cardId: number) {
-    await purchaseCard(user.id, cardId);
+    await findCard(user.id, cardId);
     await cardRepository.deleteCard(cardId);
 }
 
 const cardService = {
-    purchaseAllCards,
-    purchaseCard,
+    findAllCards,
+    findCard,
     insertCard,
     deleteCard
 }

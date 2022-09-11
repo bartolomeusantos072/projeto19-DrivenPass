@@ -1,5 +1,5 @@
 import { conflictError, notFoundError, unauthorizedError } from "../utils/errorUtils";
-import { CreateUserData } from "../utils/typeUtils";
+import { TCreateUserData } from "../utils/typeUtils";
 import * as userRepository from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -15,7 +15,7 @@ async function findUserById(id:number) {
     return user;
 }
 
-async function createUser(user: CreateUserData) {
+async function createUser(user: TCreateUserData) {
 
     const verifyUser = await userRepository.findUserEmail(user.email);
     if (verifyUser) {
@@ -28,7 +28,7 @@ async function createUser(user: CreateUserData) {
 
 }
 
-async function login(login: CreateUserData) {
+async function login(login: TCreateUserData) {
     const user = await userRepository.findUserEmail(login.email);
     if (!user) {
         throw unauthorizedError("Invalid credentials");
