@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import { createNetwork, deleteNetwork, findNetwork, findAllNetworks } from "../controllers/networkController";
-import { authMiddleware } from "../middlewares/authMiddleware.js";
+import { authMiddleware } from "../middlewares/authMiddleware";
 import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware";
 import { networkSchema } from "../schemas/networkSchema";
 

@@ -1,6 +1,5 @@
 import { User } from "@prisma/client";
 import * as cardRepository from "../repositories/cardRepository";
-
 import { TCreateCreditCardData } from "../utils/typeUtils";
 import { conflictError, notFoundError } from "../utils/errorUtils";
 import { decrypt, encrypt } from "../utils/criptrUtils";

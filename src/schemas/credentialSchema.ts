@@ -1,7 +1,7 @@
 import joi from "joi";
 
 export const credentialSchema = joi.object({
-  title: joi.string().required(),
+  title: joi.string().max(50).required(),
   url: joi.string().required(),
   username: joi.string().required(),
   password: joi.string().required(),
