@@ -39,7 +39,7 @@ async function login(login: TCreateUserData) {
         throw unauthorizedError("Invalid credentials");
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user.id }, process.env.JWTSECRET);
 
     return token;
 }

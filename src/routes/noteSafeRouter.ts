@@ -10,9 +10,9 @@ const noteSafeRouter = Router();
 
 
 noteSafeRouter.use(authMiddleware);
-noteSafeRouter.get("/NoteSafe", findAllNoteSafes);
-noteSafeRouter.post("/NoteSafe", validateSchemaMiddleware(noteSafeSchema), createNoteSafe);
-noteSafeRouter.get("/NoteSafe/:id", findNoteSafe)
-noteSafeRouter.delete("/NoteSafe/:id", deleteNoteSafe);
+noteSafeRouter.get("/notesafe", findAllNoteSafes);
+noteSafeRouter.post("/notesafe", validateSchemaMiddleware(noteSafeSchema), createNoteSafe);
+noteSafeRouter.get("/notesafe/:id", findNoteSafe)
+noteSafeRouter.delete("/notesafe/:id", deleteNoteSafe);
 
 export default noteSafeRouter;

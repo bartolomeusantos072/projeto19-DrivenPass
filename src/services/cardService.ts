@@ -29,9 +29,9 @@ export async function findCard(userId: number, cardId: number) {
     }
 }
 
-async function insertCard(user: User, card: TCreateCreditCardData) {
-
-    const existingCard = await cardRepository.findCardByTitle(user.id, card.title);
+async function insertCard(userId: number, card: TCreateCreditCardData) {
+    
+    const existingCard = await cardRepository.findCardByTitle(userId, card.title);
     if (existingCard) throw conflictError("Title already exists");
 
     const cardInfos: TCreateCreditCardData = {
@@ -40,7 +40,7 @@ async function insertCard(user: User, card: TCreateCreditCardData) {
         securityCode: encrypt(card.securityCode)
     }
 
-    await cardRepository.insertCard(user.id, cardInfos);
+    await cardRepository.insertCard(userId, cardInfos);
 }
 
 async function deleteCard(user: User, cardId: number) {

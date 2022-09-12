@@ -5,10 +5,10 @@ import * as cardController from "../controllers/cardController";
 import { authMiddleware } from "../middlewares/authMiddleware";
 
 const cardRouter = Router();
-cardRouter.use(authMiddleware);
-cardRouter.get("/cards", cardController.findAllCards);
-cardRouter.post("/cards",validateSchemaMiddleware(cardSchema),cardController.insertCard)
-cardRouter.get("/cards/:id",cardController.findCard);
-cardRouter.delete("/cards/:id",cardController.deleteCard)
+
+cardRouter.post("/card-create",validateSchemaMiddleware(cardSchema),authMiddleware,cardController.insertCard)
+cardRouter.get("/cards",authMiddleware, cardController.findAllCards);
+cardRouter.get("/cards/:id",authMiddleware, cardController.findCard);
+cardRouter.delete("/cards/:id",authMiddleware, cardController.deleteCard)
 
 export default cardRouter

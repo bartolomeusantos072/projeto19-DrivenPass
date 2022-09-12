@@ -18,7 +18,7 @@ export async function authMiddleware(req:Request,res:Response,next:NextFunction)
     }
 
     try {
-        const { userId } = jwt.verify(token,process.env.JWT_SECRET) as { userId: number };
+        const { userId } = jwt.verify(token,process.env.JWTSECRET) as { userId: number };
         const user = await userService.findUserById(userId);
         res.locals.user = user;
         next();
