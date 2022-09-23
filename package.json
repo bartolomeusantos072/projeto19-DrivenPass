@@ -4,9 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "npx nodemon src/index.ts",
-        "start": "node dist/index.ts",
-        "build": "tsc src/index.ts"
+        "dev": "npx nodemon src/index.ts"
     },
     "keywords": [],
     "author": "",

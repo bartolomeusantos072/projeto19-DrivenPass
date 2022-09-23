@@ -6,7 +6,7 @@ export async function insertCard(req: Request, res: Response) {
     const { user } = res.locals;
     const card = req.body;
 
-    await cardService.insertCard(user, card);
+    await cardService.insertCard(user.id, card);
     res.sendStatus(201);
 }
 export async function findCard(req: Request, res: Response) {
